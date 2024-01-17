@@ -1,5 +1,3 @@
-package Module1;
-
 public class Cat {
     private String name;
 
@@ -12,7 +10,7 @@ public class Cat {
     }
 
     public static void main(String[] args) {
-        // Create an instance of the Module1.Cat class with a name
+        // Create an instance of the Cat class with a name
         Cat cat = new Cat("Whiskers");
         Cat cat2 = new Cat("Rex");
 
