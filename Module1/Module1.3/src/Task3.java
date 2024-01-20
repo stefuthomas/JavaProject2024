@@ -18,7 +18,7 @@ public class Task3 {
                         isPrime = false;
                     }
                 }
-                if (isPrime) {
+                if (isPrime && i > 1) {
                     System.out.println(i);
                 }
             }
