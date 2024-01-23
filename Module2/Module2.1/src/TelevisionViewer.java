@@ -15,7 +15,7 @@ class Television {
     }
 
     public boolean isOn() {
-        return watching = true;
+        return watching;
     }
 
     public void pressOnOff() {
