@@ -1,9 +1,12 @@
+import java.util.Scanner;
+
 public class Car {
     private float speed;
     private float gasolineLevel;
     private String typeName;
     private float tankCapacity;
     private float topSpeed;
+    private int targetSpeed;
     public Car(String typeName) {
         speed = 0; gasolineLevel = 0;
         this.typeName = typeName;
@@ -41,4 +44,32 @@ public class Car {
     float getGasolineLevel() {
         return gasolineLevel;
     }
+
+    public void cruiseControl(boolean on) {
+        int targetSpeed = setTargetSpeed();
+        if (on && targetSpeed <= topSpeed) {
+            while (speed < targetSpeed) {
+                accelerate();
+            }
+        } else {
+            while (speed > 0) {
+                decelerate(10);
+            }
+        }
+        if (targetSpeed >= topSpeed) {
+            System.out.println("Target speed is too high!");
+        }
+    }
+
+    private int setTargetSpeed() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter target speed: ");
+        targetSpeed = scanner.nextInt();
+        return targetSpeed;
+    }
+}
+
+
+class CarDriver {
+    
 }
