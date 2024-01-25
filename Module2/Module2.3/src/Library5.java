@@ -6,17 +6,15 @@ class Book5 {
     private String author;
     private int publicationYear;
 
-    private double rating;
-    private ArrayList<Double> totalRatings = new ArrayList<>();
-    private int numberOfReviews;
-    private String review;
+    ArrayList<String> reviews = new ArrayList<>();
+    ArrayList<Double> ratings = new ArrayList<>();
 
     public Book5(String title, String author, int publicationYear) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
-        this.numberOfReviews = 0;
-        this.totalRatings = new ArrayList<>();
+        this.ratings = new ArrayList<>();
+        this.reviews = new ArrayList<>();
     }
 
     public String getTitle(){
@@ -32,28 +30,15 @@ class Book5 {
     }
 
     public void setRating(double rating) {
-        this.rating = rating;
-        totalRatings.add(rating);
-
+        this.ratings.add(rating);
     }
 
     public void addReview(String review) {
-        this.numberOfReviews++;
-        this.review = review;
+        this.reviews.add(review);
     }
 
-    public double getRating() {
-        return rating;
     }
-
-    public String getReview() {
-        return review;
-    }
-
-    public int getNumberOfReviews() {
-        return numberOfReviews;
-    }
-}
+    
 
 public class Library5 {
     private ArrayList<Book5> books = new ArrayList<>();
@@ -126,23 +111,27 @@ public class Library5 {
     }
 
     public double getAverageRating() {
-        int sum = 0;
+        int totalRatings = 0;
+        double sum = 0;
         for (Book5 book : books) {
-            sum += book.getRating();
+            for (double rating : book.ratings) {
+                sum += rating;
+                totalRatings++;
+            }
         }
-        return sum / books.size();
+        return sum / totalRatings;
     }
 
     public String getMostReviewedBook() {
-        int max = 0;
-        Book5 mostReviewedBook = null;
+        int mostReviews = 0;
+        String title = null;
         for (Book5 book : books) {
-            if (book.getNumberOfReviews() > max) {
-                max = book.getNumberOfReviews();
-                mostReviewedBook = book;
+            if (book.ratings.size() > mostReviews) {
+                mostReviews = book.reviews.size();
+                title = book.getTitle();
             }
         }
-        return mostReviewedBook.getTitle();
+        return title;
     }
 }
 
@@ -160,29 +149,31 @@ class LibraryMain5 {
         library5.displayBooks();
 
         firstBook.addReview("Great book!");
-        firstBook.setRating(4.9);
+        firstBook.setRating(5.0);
         firstBook.addReview("I liked it.");
-        firstBook.setRating(3.5);
+        firstBook.setRating(4.2);
         firstBook.addReview("It was okay.");
-        firstBook.setRating(2.1);
+        firstBook.setRating(3.3);
         firstBook.addReview("I didn't like it.");
-        firstBook.setRating(1.5);
+        firstBook.setRating(1.8);
 
         secondBook.addReview("Great book!");
-        secondBook.setRating(4.2);
+        secondBook.setRating(4.8);
         secondBook.addReview("I liked it.");
-        secondBook.setRating(3.8);
+        secondBook.setRating(3.3);
         secondBook.addReview("It was okay.");
         secondBook.setRating(2.5);
 
         thirdBook.addReview("Great book!");
         thirdBook.setRating(4.5);
         thirdBook.addReview("I liked it.");
-        thirdBook.setRating(3.2);
+        thirdBook.setRating(3.1);
 
         // Reviews: firtBook = 4, secondBook = 3, thirdBook = 2
         // Introduction to Java Programming has the most reviews:
         System.out.println("Highest amount of reviews: " + library5.getMostReviewedBook());
+        // Total ratings: 9, Sum of ratings: 32.5
+        System.out.printf("Average rating of all the books in the library %.1f ", library5.getAverageRating());
 
 
     }
