@@ -20,9 +20,11 @@ public class Shape {
 
 class Circle extends Shape {
     protected float radius;
+    protected String color;
 
-    Circle(float radius) {
+    Circle(float radius, String color) {
         this.radius = radius;
+        this.color = color;
     }
 
     @Override
@@ -36,17 +38,19 @@ class Circle extends Shape {
     }
     @Override
     public String display() {
-        return "Area of " + this.toString() + " with radius " + radius + ": " + this.calculateArea();
+        return "Area of " + color + " " + this.toString() + " with radius " + radius + ": " + this.calculateArea();
     }
 }
 
 class Rectangle extends Shape {
     protected float height;
     protected float width;
+    protected String color;
 
-    Rectangle(float height, float width) {
+    Rectangle(float height, float width, String color) {
         this.height = height;
         this.width = width;
+        this.color = color;
     }
 
     @Override
@@ -60,17 +64,19 @@ class Rectangle extends Shape {
     }
     @Override
     public String display() {
-        return "Area of " + this.toString() + " with width " + width + " and height " + height + ": " + this.calculateArea();
+        return "Area of " + color + " " + this.toString() + " with width " + width + " and height " + height + ": " + this.calculateArea();
     }
 }
 
 class Triangle extends Shape {
     protected float height;
     protected float base;
+    protected String color;
 
-    Triangle(float height, float base) {
+    Triangle(float height, float base, String color) {
         this.height = height;
         this.base = base;
+        this.color = color;
     }
 
     @Override
@@ -84,15 +90,15 @@ class Triangle extends Shape {
     }
     @Override
     public String display() {
-        return "Area of " + this.toString() + " with base " + base + " and height " + height + ": " + this.calculateArea();
+        return "Area of " + color + " " + this.toString() + " with base " + base + " and height " + height + ": " + this.calculateArea();
     }
 }
 
 class ShapeCalculator {
     public static void main(String[] args) {
-        Circle circle = new Circle(5);
-        Rectangle rectangle = new Rectangle(6, 4);
-        Triangle triangle = new Triangle(8, 3);
+        Circle circle = new Circle(5, "blue");
+        Rectangle rectangle = new Rectangle(6, 4, "red");
+        Triangle triangle = new Triangle(8, 3, "green");
         Object[] shapes = {circle, rectangle, triangle};
         System.out.println("Shape Calculator\n");
 
