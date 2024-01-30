@@ -6,15 +6,9 @@ public interface Vehicle {
 
 class Car implements Vehicle {
 
-    String type;
-    String fuel;
-    String color;
-
-    public Car() {
-        this.type = "Car";
-        this.fuel = "Petrol";
-        this.color = "Red";
-    }
+    private String type;
+    private String fuel;
+    private String color;
     Car(String type, String fuel, String color) {
         this.type = type;
         this.fuel = fuel;
