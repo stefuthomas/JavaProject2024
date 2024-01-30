@@ -18,13 +18,9 @@ abstract class AbstractVehicle implements Vehicle {
         this.color = color;
     }
 
-    public void accelerate(int speed) {
-        this.currentSpeed += speed;
-    }
+    abstract void accelerate(int speed);
 
-    public void decelerate(int speed) {
-        this.currentSpeed -= speed;
-    }
+    abstract void decelerate(int speed);
 }
 
 class Car2 extends AbstractVehicle {
@@ -54,6 +50,24 @@ class Car2 extends AbstractVehicle {
         System.out.println("Manufacture Year: " + this.manufactureYear);
     }
 
+    @Override
+    public void accelerate(int speed) {
+        if (this.currentSpeed + speed > this.maxSpeed) {
+            System.out.println("Car cannot accelerate to " + (this.currentSpeed + speed) + " km/h");
+        } else {
+            this.currentSpeed += speed;
+            System.out.println("Car accelerated to " + this.currentSpeed + " km/h");
+        }
+    }
+    @Override
+    public void decelerate(int speed) {
+        if (this.currentSpeed - speed < 0) {
+            System.out.println("Car cannot decelerate to " + (this.currentSpeed - speed) + " km/h");
+        } else {
+            this.currentSpeed -= speed;
+            System.out.println("Car decelerated to " + this.currentSpeed + " km/h");
+        }
+    }
 }
 
 class Motorcycle2 extends AbstractVehicle {
@@ -81,6 +95,25 @@ class Motorcycle2 extends AbstractVehicle {
         System.out.println("Current Speed: " + this.currentSpeed);
         System.out.println("Manufacturer: " + this.manufacturer);
         System.out.println("Manufacture Year: " + this.manufactureYear);
+    }
+
+    @Override
+    public void accelerate(int speed) {
+        if (this.currentSpeed + speed > this.maxSpeed) {
+            System.out.println("Motorcycle cannot accelerate to " + (this.currentSpeed + speed) + " km/h");
+        } else {
+            this.currentSpeed += speed;
+            System.out.println("Motorcycle accelerated to " + this.currentSpeed + " km/h");
+        }
+    }
+    @Override
+    public void decelerate(int speed) {
+        if (this.currentSpeed - speed < 0) {
+            System.out.println("Motorcycle cannot decelerate to " + (this.currentSpeed - speed) + " km/h");
+        } else {
+            this.currentSpeed -= speed;
+            System.out.println("Motorcycle decelerated to " + this.currentSpeed + " km/h");
+        }
     }
 }
 
@@ -111,6 +144,26 @@ class Bus2 extends AbstractVehicle {
         System.out.println("Manufacturer: " + this.manufacturer);
         System.out.println("Manufacture Year: " + this.manufactureYear);
         System.out.println("Passengers: " + this.passengers);
+    }
+
+    @Override
+    public void accelerate(int speed) {
+        if (this.currentSpeed + speed > this.maxSpeed) {
+            System.out.println("Bus cannot accelerate to " + (this.currentSpeed + speed) + " km/h");
+        } else {
+            this.currentSpeed += speed;
+            System.out.println("Bus accelerated to " + this.currentSpeed + " km/h");
+        }
+    }
+
+    @Override
+    public void decelerate(int speed) {
+        if (this.currentSpeed - speed < 0) {
+            System.out.println("Bus cannot decelerate to " + (this.currentSpeed - speed) + " km/h");
+        } else {
+            this.currentSpeed -= speed;
+            System.out.println("Bus decelerated to " + this.currentSpeed + " km/h");
+        }
     }
 }
 
