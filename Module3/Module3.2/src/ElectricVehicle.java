@@ -31,11 +31,9 @@ abstract class AbstractVehicle2 implements Vehicle, ElectricVehicle {
     public void accelerate(int speed) {
         this.currentSpeed += speed;
     }
-
     public void decelerate(int speed) {
         this.currentSpeed -= speed;
     }
-    @Override
     public void chargeBattery(int amount) {
         System.out.println("Charging not possible for this vehicle.");
     }
@@ -122,10 +120,41 @@ class ElectricMotorcycle extends AbstractVehicle2 {
     }
 }
 
+class GasCar extends AbstractVehicle2 {
+    private int fuelCapacity;
+    GasCar(int maxSpeed, int manufactureYear, String manufacturer, String type, String color) {
+        super(maxSpeed, manufactureYear, manufacturer, type, color);
+        this.fuelCapacity = 100;
+    }
+
+    @Override
+    public void start() {
+        System.out.println("Gas car is starting...");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("Gas car is stopping...");
+    }
+
+    @Override
+    public void getInfo() {
+        System.out.println("Gas car info:");
+        System.out.println("Max speed: " + this.maxSpeed);
+        System.out.println("Manufacture year: " + this.manufactureYear);
+        System.out.println("Manufacturer: " + this.manufacturer);
+        System.out.println("Current speed: " + this.currentSpeed);
+        System.out.println("Type: " + this.type);
+        System.out.println("Color: " + this.color);
+        System.out.println("Fuel capacity: " + this.fuelCapacity);
+    }
+}
+
 class ElectricVehicleTest {
     public static void main(String[] args) {
         ElectricCar electroCar = new ElectricCar(200, 2019, "Tesla", "Model S", "Red");
         ElectricMotorcycle electroMotorbike = new ElectricMotorcycle(200, 2019, "Zero", "SR/f", "Red");
+        GasCar gasCar = new GasCar(200, 2020, "BMW", "M5", "Black");
         electroCar.chargeBattery(50);
         electroCar.accelerate(100);
         electroCar.getInfo();
@@ -141,5 +170,7 @@ class ElectricVehicleTest {
         electroMotorbike.stop();
         electroMotorbike.getInfo();
         System.out.println("====================================");
+        System.out.println("Trying to charge gas car...");
+        gasCar.chargeBattery(50);
     }
 }
