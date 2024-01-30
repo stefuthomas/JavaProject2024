@@ -5,6 +5,21 @@ public interface Vehicle {
 }
 
 class Car implements Vehicle {
+
+    String type;
+    String fuel;
+    String color;
+
+    public Car() {
+        this.type = "Car";
+        this.fuel = "Petrol";
+        this.color = "Red";
+    }
+    Car(String type, String fuel, String color) {
+        this.type = type;
+        this.fuel = fuel;
+        this.color = color;
+    }
     @Override
     public void start() {
         System.out.println("Car is starting...");
@@ -17,13 +32,22 @@ class Car implements Vehicle {
     @Override
     public void getInfo() {
         System.out.println("Car information: ");
-        System.out.println("Type: Car");
-        System.out.println("Fuel: Petrol");
-        System.out.println("Color: Red");
+        System.out.println("Type: " + this.type);
+        System.out.println("Fuel: " + this.fuel);
+        System.out.println("Color: " + this.color);
     }
 }
 
 class Motorcycle implements Vehicle {
+    private String type;
+    private String fuel;
+    private String color;
+
+    public Motorcycle(String type, String fuel, String color) {
+        this.type = type;
+        this.fuel = fuel;
+        this.color = color;
+    }
     @Override
     public void start() {
         System.out.println("Motorcycle is starting...");
@@ -36,13 +60,22 @@ class Motorcycle implements Vehicle {
     @Override
     public void getInfo() {
         System.out.println("Motorcycle information: ");
-        System.out.println("Type: Motorcycle");
-        System.out.println("Fuel: Gasoline");
-        System.out.println("Color: Black");
+        System.out.println("Type: " + this.type);
+        System.out.println("Fuel: " + this.fuel);
+        System.out.println("Color: " + this.color);
     }
 }
 
 class Bus implements Vehicle {
+    private String type;
+    private String fuel;
+    private int passengers;
+
+    Bus(String type, String fuel, int passengers) {
+        this.type = type;
+        this.fuel = fuel;
+        this.passengers = passengers;
+    }
     @Override
     public void start() {
         System.out.println("Bus is starting...");
@@ -55,17 +88,17 @@ class Bus implements Vehicle {
     @Override
     public void getInfo() {
         System.out.println("Bus information: ");
-        System.out.println("Type: Bus");
-        System.out.println("Fuel: Diesel");
-        System.out.println("Capacity: 40 passengers");
+        System.out.println("Type: " + this.type);
+        System.out.println("Fuel: " + this.fuel);
+        System.out.println("Capacity: " + this.passengers + " passengers");
     }
 }
 
 class VehicleTest {
     public static void main(String[] args) {
-        Vehicle car = new Car();
-        Vehicle motorcycle = new Motorcycle();
-        Vehicle bus = new Bus();
+        Vehicle car = new Car("Car", "Petrol", "Red");
+        Vehicle motorcycle = new Motorcycle("Motorcycle", "Diesel", "Black");
+        Vehicle bus = new Bus("Bus", "Diesel", 40);
 
         System.out.println("Vehicle Demonstration: ");
 
