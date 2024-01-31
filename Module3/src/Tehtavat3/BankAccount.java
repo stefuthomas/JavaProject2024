@@ -1,7 +1,34 @@
 package Tehtavat3;
 
 public class BankAccount {
-    // Your variable declarations and code here
+    private static int totalAccounts = 0;
+    private int accountNumber;
+    private double balance;
+
+    public BankAccount(double balance) {
+        this.balance = balance;
+        this.accountNumber = ++totalAccounts;
+    }
+
+    public static int getTotalAccounts() {
+        return totalAccounts;
+    }
+
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void deposit(double amount) {
+        this.balance += amount;
+    }
+
+    public void withdraw(double amount) {
+        this.balance -= amount;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
 
     public static void main(String[] args) {
         BankAccount account1 = new BankAccount(1000);
