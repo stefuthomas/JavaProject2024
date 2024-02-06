@@ -14,7 +14,7 @@ public class CSVReader {
         try {
             myURL = new URL("https://users.metropolia.fi/~jarkkov/" + FILENAME);
         } catch (MalformedURLException e) {
-            System.err.println(e);
+            System.err.println(e.getMessage());
             return;
         }
 
@@ -40,6 +40,7 @@ public class CSVReader {
                                     try {
                                         if (!values[i].equals("*")) {
                                             double temp = Double.parseDouble(values[i].replace(",", "."));
+                                            System.out.println(temp);
                                             sumTemp += temp;
                                             count++;
                                         }
