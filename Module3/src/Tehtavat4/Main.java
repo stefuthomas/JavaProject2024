@@ -75,33 +75,43 @@ class Enrollment implements Serializable {
 
 public class Main {
     private final static String FILENAME = "enrollment.ser";
+
     public static void main(String[] args) {
         // Create instances of Student, Course, and Enrollment
         Student student = new Student(1, "Jartsa", 20);
         Course course = new Course("Ohjelmointi 1", "OHJ1", "Reijo");
         Enrollment enrollment = new Enrollment(student, course, "2021-01-01");
         // Serialize and save the Enrollment instance
-            try (
-                    FileInputStream inputStream = new FileInputStream(FILENAME);
-                    ObjectInputStream objects = new ObjectInputStream(inputStream);
-                    ) {
-                student = (Student) objects.readObject();
-                course = (Course) objects.readObject();
-                enrollment = (Enrollment) objects.readObject();
-
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+        try {
+            FileOutputStream fileOut = new FileOutputStream(FILENAME);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(enrollment);
+            out.writeObject(student);
+            out.writeObject(course);
+            out.close();
+            fileOut.close();
+            System.out.println("Serialized data is saved in " + FILENAME);
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
         // Deserialize and print the Enrollment instance
-        try (
-                FileOutputStream outputStream = new FileOutputStream(FILENAME);
-                ObjectOutputStream objects = new ObjectOutputStream(outputStream);
-                ) {
-            objects.writeObject(student);
-            objects.writeObject(course);
-            objects.writeObject(enrollment);
-        } catch (IOException e) {
-            e.printStackTrace();
+        try {
+            FileInputStream fileIn = new FileInputStream(FILENAME);
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            Enrollment e = (Enrollment) in.readObject();
+            Student s = (Student) in.readObject();
+            Course c = (Course) in.readObject();
+            in.close();
+            fileIn.close();
+            System.out.println("Deserialized data from " + FILENAME);
+            System.out.println("Student: " + s.getName() + " " + s.getAge() + " " + s.getId());
+            System.out.println("Course: " + c.getCourseName() + " " + c.getCourseCode() + " " + c.getInstructor());
+            System.out.println("Enrollment: " + e.getEnrollmentDate());
+        } catch (IOException i) {
+            i.printStackTrace();
+        } catch (ClassNotFoundException c) {
+            System.out.println("Enrollment class not found");
+            c.printStackTrace();
         }
     }
 }

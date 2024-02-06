@@ -40,7 +40,6 @@ public class CSVReader {
                                     try {
                                         if (!values[i].equals("*")) {
                                             double temp = Double.parseDouble(values[i].replace(",", "."));
-                                            System.out.println(temp);
                                             sumTemp += temp;
                                             count++;
                                         }
