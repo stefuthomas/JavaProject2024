@@ -1,4 +1,5 @@
-`public class Calculator {
+`
+public class Calculator {
 private int sum;
 
     public Calculator() {
