@@ -1,6 +1,4 @@
-`
-
-    public class Calculator {
+ public class Calculator {
     private int sum;
 
     public Calculator() {
@@ -38,7 +36,7 @@
     calc.reset();
     System.out.println(calc.getSum());
     }
-    }`
+    }
 
 Explain the code(comment for copilot):
 The Calculator class has a private sum variable, a constructor that sets sum to 0, and three methods: add, reset, and getSum.
