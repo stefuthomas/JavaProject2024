@@ -1,6 +1,7 @@
 `
-public class Calculator {
-private int sum;
+
+    public class Calculator {
+    private int sum;
 
     public Calculator() {
         sum = 0;
@@ -25,21 +26,21 @@ private int sum;
         return sum;
     }
 
-}
+    }
 
-class Main {
-public static void main(String[] args) {
-Calculator calc = new Calculator();
-calc.add(5);
-System.out.println(calc.getSum());
-calc.add(-3);
-System.out.println(calc.getSum());
-calc.reset();
-System.out.println(calc.getSum());
-}
-}`
+    class Main {
+    public static void main(String[] args) {
+    Calculator calc = new Calculator();
+    calc.add(5);
+    System.out.println(calc.getSum());
+    calc.add(-3);
+    System.out.println(calc.getSum());
+    calc.reset();
+    System.out.println(calc.getSum());
+    }
+    }`
 
-Explain the code:
+Explain the code(comment for copilot):
 The Calculator class has a private sum variable, a constructor that sets sum to 0, and three methods: add, reset, and getSum.
 The add method takes an integer number as a parameter and adds it to sum variable. If the number is negative, an Exception is thrown.
 The reset method sets sum to 0.
