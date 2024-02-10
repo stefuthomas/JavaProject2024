@@ -1,6 +1,8 @@
 package Tehtavat1;
 
-class Counter extends Thread {
+import java.util.TreeMap;
+
+class Counter implements Runnable {
     private int startNum;
     private int endnum;
     private boolean evenNum;
@@ -29,7 +31,9 @@ class Counter extends Thread {
 }
 public class Task1 {
     public static void main(String[] args) {
-        new Counter(1, 100, false).start();
-        new Counter(1, 100, true).start();
+        Thread evenNumbers = new Thread(new Counter(1, 100, true));
+        Thread oddNumbers = new Thread(new Counter(1, 100, false));
+        evenNumbers.start();
+        oddNumbers.start();
     }
 }
