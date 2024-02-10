@@ -1,56 +1,35 @@
 package Tehtavat1;
 
-class ThreadingEven implements Runnable {
-    private int numberLowest;
-    private int numberHighest;
-
-    public ThreadingEven(int numberLowest, int numberHighest) {
-        this.numberHighest = numberHighest;
-        this.numberLowest = numberLowest;
+class Counter extends Thread {
+    private int startNum;
+    private int endnum;
+    private boolean evenNum;
+    public Counter(int startNum, int endnum, boolean evenNum) {
+        this.startNum = startNum;
+        this.endnum = endnum;
+        this.evenNum = evenNum;
     }
     @Override
     public void run() {
-        evenNumbers();
-    }
-
-    public void evenNumbers() {
-        for (int i = this.numberLowest; i <= this.numberHighest; i++) {
-            if (i % 2 == 0) {
-                System.out.println("Even: " + i);
+        if (evenNum) {
+            for (int num = startNum; num <= endnum; num++) {
+                if (num % 2 == 0) {
+                    System.out.println("Even: " + num);
+                }
+            }
+        } else {
+            for (int num = startNum; num <= endnum; num++) {
+                if (num % 2 != 0) {
+                    System.out.println("Odd: " + num);
+                }
             }
         }
+        System.out.println("Calculating is over");
     }
-}
-
-class ThreadingOdd implements Runnable {
-    private int numberLowest;
-    private int numberHighest;
-
-    public ThreadingOdd(int numberLowest, int numberHighest) {
-        this.numberHighest = numberHighest;
-        this.numberLowest = numberLowest;
-    }
-
-    @Override
-    public void run() {
-        oddNumbers();
-    }
-
-    public void oddNumbers() {
-        for (int i = this.numberLowest; i < this.numberHighest; i++) {
-            if (i % 2 != 0) {
-                System.out.println("Odd: " + i);
-            }
-        }
-    }
-
 }
 public class Task1 {
     public static void main(String[] args) {
-        Thread threadingEven = new Thread(new ThreadingEven(1, 100));
-        Thread threadingOdd = new Thread(new ThreadingOdd(1, 100));
-        threadingEven.start();
-        threadingOdd.start();
+        new Counter(1, 100, false).start();
+        new Counter(1, 100, true).start();
     }
-
 }
