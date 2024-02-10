@@ -1,75 +1,91 @@
 package Tehtavat1;
-import org.w3c.dom.ls.LSOutput;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
 class Calculator extends Thread {
-    private int start;
-    private int end;
-    private int[] numbers;
-    private int sum;
-    public Calculator(int start, int end, int[] numbers) {
-        this.start = start;
-        this.end = end;
-        this.numbers = numbers;
-        this.sum = 0;
+    private static int i = 0;
+    private int subSum = 0;
+    private int calculatorId;
+    private List<Integer> numbersToCalculate;
+
+    Calculator(List<Integer> numbersToCalculate) {
+        this.calculatorId = ++i;
+        this.subSum = 0;
+        this.numbersToCalculate = numbersToCalculate;
     }
 
     @Override
     public void run() {
-        sum = sumNumbers();
-    }
-
-    public int sumNumbers() {
-        int sum = 0;
-        for (int i = start; i <= end; i++) {
-            sum += numbers [i];
+        for (int i = 0; i < numbersToCalculate.size(); i++) {
+            int number = numbersToCalculate.get(i);
+            System.out.println("Calculator " + calculatorId + " calculating: " + number);
+            subSum += number;
         }
-        return sum;
     }
 
-    public int getSum() {
-        return sum;
+    public int getCalculatorId() {
+        return calculatorId;
     }
 
+    public int getSubSum() {
+        return subSum;
+    }
 }
-public class Task2 {
-    public static void main(String[] args) {
-        int[] numbersToCalculate;
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Numbers: ");
-        int size = scanner.nextInt();
-        numbersToCalculate = new int[size];
 
-        for (int i = 0; i < size; i++) {
-            numbersToCalculate[i] = (int) (Math.random() * 100);
+class Numbers {
+    private ArrayList<Integer> numbers;
+    private ArrayList<Calculator> calculators;
+    private int sum;
+
+    public Numbers() {
+        this.numbers = new ArrayList<>();
+        this.calculators = new ArrayList<>();
+        this.sum = 0;
+        setNumbers();
+        setCalculators();
+    }
+
+    public void setNumbers() {
+        for (int i = 0; i < 100; i++) {
+            numbers.add((int) (Math.random() * 10) + 1);
         }
-        ArrayList<Calculator> calculators = new ArrayList<>();
-        calculators.add(new Calculator(0, size / 4 - 1, numbersToCalculate));
-        calculators.add(new Calculator(size / 4, size / 2 - 1, numbersToCalculate));
-        calculators.add(new Calculator(size / 2, size / 4 * 3 - 1, numbersToCalculate));
-        calculators.add(new Calculator(size / 4 * 3, size - 1, numbersToCalculate));
+    }
 
+    public void setCalculators() {
+        calculators.add(new Calculator(numbers.subList(0, 25)));
+        calculators.add(new Calculator(numbers.subList(25, 50)));
+        calculators.add(new Calculator(numbers.subList(50, 75)));
+        calculators.add(new Calculator(numbers.subList(75, 100)));
+    }
+
+    public void calculate() {
         for (Calculator calculator : calculators) {
             calculator.start();
         }
-
         for (Calculator calculator : calculators) {
             try {
                 calculator.join();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                e.getMessage();
             }
         }
-
-        int threadedSum = 0;
-
         for (Calculator calculator : calculators) {
-            System.out.println("Threadded calculator sum: " + calculator.getSum());
-            threadedSum += calculator.getSum();
+            int subSum = calculator.getSubSum();
+            System.out.println("Calculator " + calculator.getCalculatorId() + ". calculated sub sum: " + subSum);
+            sum += subSum;
         }
 
-        System.out.println("Threaded sum: " + threadedSum);
+        printResults();
+    }
+    public void printResults() {
+        System.out.println("Total sum calculated: " + sum);
+    }
+}
+
+public class Task2 {
+    public static void main(String[] args) {
+        Numbers numbers = new Numbers();
+        numbers.calculate();
     }
 }
