@@ -35,7 +35,7 @@ class Calculator extends Thread {
 
 class Numbers {
     private ArrayList<Integer> numbers;
-    private ArrayList<Calculator> calculators;
+    private ArrayList<Tehtavat1.Calculator> calculators;
     private int sum;
 
     public Numbers() {

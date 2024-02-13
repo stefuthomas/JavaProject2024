@@ -37,7 +37,7 @@ class Customer implements Runnable {
         if (reserve) {
             System.out.println("Customer " + customerId + " reserved " + amountOfTickets + " tickets.");
         } else {
-            System.out.println("Cusromer " + customerId + " couldn't reserve " + amountOfTickets + " tickets.");
+            System.out.println("Customer " + customerId + " couldn't reserve " + amountOfTickets + " tickets.");
         }
     }
 }
