@@ -3,7 +3,7 @@ package Tehtavat1;
 import java.util.*;
 
 
-public class Person {
+class Person {
     private String name, city;
     private int age;
 
@@ -26,7 +26,7 @@ public class Person {
     }
 }
 
-class PersonSort {
+public class PersonSort {
     public static void main(String[] args) {
         List<Person> people = new ArrayList<>();
         people.add(new Person("Antti", "Helsinki", 20));
