@@ -2,7 +2,6 @@ package Tehtavat2;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class CalculateMean {
     public static void main(String[] args) {
