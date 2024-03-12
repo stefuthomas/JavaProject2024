@@ -37,7 +37,7 @@ public class PersonSort {
         people.add(new Person("Erkki", "Jyväskylä", 19));
 
         System.out.println("People ordered in ascending oreder:");
-        Collections.sort(people, Comparator.comparingInt(Person :: getAge));
+        people.sort(Comparator.comparingInt(Person::getAge));
         people.forEach(person -> System.out.println(person.getName() + " " + person.getAge()));
 
         System.out.println();
